@@ -1,0 +1,22 @@
+<h2>Welcome to  <strong><%= @restaurant.name %> !</strong></h2>
+<p>Address: <strong><%= @restaurant.address %></strong></p>
+<p>Food type: <strong><%= @restaurant.category %></strong></p>
+
+<%= link_to 'Leave a review', new_restaurant_review_path(@restaurant), class: "btn btn-primary" %>
+
+
+<% if @restaurant.reviews.empty? %>
+  <p>No reviews yet!</p>
+<% else %>
+  <ul>
+    <% @restaurant.reviews.each do |review| %>
+
+      <li>
+        <p><% review.rating %></p>
+        <p><%= review.content %></p>
+      </li>
+    <% end %>
+  </ul>
+<% end %>
+
+<%= link_to 'Back', restaurants_path, class: "btn btn-primary" %>
